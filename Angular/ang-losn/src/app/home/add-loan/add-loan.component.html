@@ -1,0 +1,132 @@
+<div class="container">
+    <div class="alert alert-success mt-3" *ngIf="isLoanAdded">
+        Loan added successfully.please <a  href="#" [routerLink]="['/admin-home']">Click here</a> to navigate to home-page
+    </div>
+</div>
+<div class="container card mt-5 mb-5 border-info" *ngIf="!isLoanAdded">
+    <div class="alert alert-danger mt-3" *ngIf="isUserInValid">
+        Invalid User Id,Please try again
+    </div>
+
+    <h3 class="mt-3">Orginate new Loan</h3>
+    <form (ngSubmit)="onSubmit()" [formGroup]="addForm">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="userid">User ID</label>
+                <input type="number" class="form-control" formControlName="userid" id="userid" placeholder="user ID">
+                <div class="text-danger"
+                    *ngIf="addForm.get('userid').touched && addForm.get('userid').hasError('required')">
+                    <small>user ID is
+                        required.</small>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="FirstName">First Name</label>
+                <input type="text" class="form-control" formControlName="firstName" id="FirstName"
+                    placeholder="First Name">
+                <div class="text-danger"
+                    *ngIf="addForm.get('firstName').touched && addForm.get('firstName').hasError('required')">
+                    <small>First Name is
+                        required.</small>
+                </div>
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="LastName">Last Name</label>
+                <input type="text" class="form-control" id="LastName" formControlName="lastName" placeholder="Last Name">
+                <div class="text-danger"
+                    *ngIf="addForm.get('lastName').touched && addForm.get('lastName').hasError('required')">
+                    <small>Last name is
+                        required.</small>
+                </div>
+    
+    
+            </div>
+            <div class="form-group col-md-6">
+                <label for="LoanProperty">Loan Property</label>
+                <input type="text" class="form-control" id="LoanProperty" formControlName="loanProperty" placeholder="LoanProperty">
+                <div class="text-danger"
+                    *ngIf="addForm.get('loanProperty').touched && addForm.get('loanProperty').hasError('required')">
+                    <small>Loan Property is
+                        required.</small>
+                </div>
+    
+    
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="LoanAmount">Loan Amount</label>
+                <input type="number" class="form-control" id="LoanAmount" formControlName="loanAmount" placeholder="Loan Amount">
+                <div class="text-danger"
+                    *ngIf="addForm.get('loanAmount').touched && addForm.get('loanAmount').hasError('required')">
+                    <small>Loan Amount is
+                        required.</small>
+                </div>
+    
+    
+            </div>
+            <div class="form-group col-md-6">
+                <label for="Loantype">Loan type</label>
+                <input type="text" class="form-control" id="Loantype" formControlName="loantype" placeholder="Loan Type">
+                <div class="text-danger"
+                    *ngIf="addForm.get('loantype').touched && addForm.get('loantype').hasError('required')">
+                    <small>Loan type is
+                        required.</small>
+                </div>
+    
+    
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="Loanterm">Loan Term</label>
+                <input type="number" class="form-control" id="Loanterm" formControlName="loanterm" placeholder="Loan Term">
+                <div class="text-danger"
+                    *ngIf="addForm.get('loanterm').touched && addForm.get('loanterm').hasError('required')">
+                    <small>Loan term is
+                        required.</small>
+                </div>
+    
+    
+            </div>
+            <div class="form-group col-md-6">
+                <label for="dateOfOrigin">Date of origin</label>
+                <input type="text" class="form-control" id="dateOfOrigin" formControlName="dateOfOrigin" placeholder="YYYY-MM-DD">
+                <div class="text-danger"
+                    *ngIf="addForm.get('dateOfOrigin').touched && addForm.get('dateOfOrigin').hasError('required')">
+                    <small>Date is
+                        required.</small>
+                </div>
+                <div class="text-danger"
+                *ngIf="addForm.get('dateOfOrigin').touched && addForm.get('dateOfOrigin').hasError('pattern')">
+                <small>Please enter valid date format
+                    </small>
+            </div>
+    
+    
+            </div>
+
+        </div>
+      
+        <div class="form-row">
+            <div class="form-group ml-1">
+                <button type="submit" class="btn btn-primary btn-lg" [disabled]="!addForm.valid">Submit</button>
+            </div>
+        </div>
+
+
+    </form>
+
+
+
+
+
+
+
+</div>

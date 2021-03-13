@@ -1,0 +1,80 @@
+<div class="container mt-4">
+    <ul class="card p-3 border-success">
+        <div class="row ">
+            <div class="col-md-6 ">
+                <h5>Please click the button to originate new loan<i class="material-icons mat">trending_flat</i></h5>
+            </div>
+            <div class="col-md-6 ">
+                <button type="button" class="btn btn-success btn-lg  btn-block" (click)="onNewLoan()">originate new loan</button>
+            </div>
+        </div>
+       
+    </ul>
+
+</div>
+<div class="container  mb-5 pb-5">
+
+    <div class="alert alert-danger text-danger" *ngIf="!isLoansAvailable">No Loans Found.Please click the above button to originate</div>
+    <div class="d-flex justify-content-center" *ngIf="isLoading">
+        <img style="width:75px;height:75px;"src="assets/loading-png.gif"/>
+    </div>
+
+    <ul class="list-group mt-3" *ngIf="isLoansAvailable">
+       
+        <div class="row  m-2">
+            <div class="col-md-12">
+                <h4 class="text-info">AVAILABLE LOANS :</h4>
+                <div class="alert alert-success"  *ngIf="isDeleted">Loan Deleted successfully</div>
+            </div>
+        </div>
+        <li class="list-group-item m-2 border-info" *ngFor="let loan of loans">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>User ID: <span class=" text-muted">{{loan.userid}}</span></h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Borrower Name: <span class=" text-muted">{{loan.firstName}} {{loan.lastName}}</span></h5>
+                </div>
+
+                <div class="col-md-6">
+                    <h5>Loan Number: <span class=" text-muted">{{loan.id}}</span></h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Loan Amount: <span class=" text-danger">{{loan.loanAmount | currency:'INR'}}</span></h5>
+                </div>
+                <div class="col-md-6">
+                    <h5>Borrower Property: <span class=" text-muted">{{loan.loanProperty}}</span></h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Type of Loan: <span class=" text-muted">{{loan.loantype}} </span></h5>
+                </div>
+
+                <div class="col-md-6">
+                    <h5>Loan Term: <span class=" text-muted">{{loan.loanterm}} years</span></h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Date of origin: <span class=" text-muted">{{loan.dateOfOrigin}} </span></h5>
+                </div>
+                <div class="col-md-2 col-sm-6 mb-2">
+                    <button type="button" class="btn btn-outline-danger" (click)="onDelete(loan.id)">Delete <i class="material-icons mat-icon">delete</i></button>
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <button type="button" class="btn btn-outline-secondary" (click)="onEdit(loan.id)">Edit <i class="material-icons mat-icon">edit</i></button>
+                </div>
+
+              
+            </div>
+
+        </li>
+
+
+    </ul>
+</div>
